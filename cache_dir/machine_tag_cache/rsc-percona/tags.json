@@ -1,0 +1,8 @@
+[
+  "server:uuid=1111111",
+  "database:active=true",
+  "database:lineage=",
+  "database:bind_ip_address=33.33.33.10",
+  "database:bind_port=3306",
+  "database:master_active=1419375585"
+]
