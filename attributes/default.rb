@@ -2,13 +2,25 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-#client setting
+case node["platform_family"]
+when "rhel"
+  #client setting
 override['mysql']['client']['packages'] =[ 'Percona-Server-client-56','Percona-Server-devel-56']
 
 #server settings
 override['mysql']['server']['packages'] =['Percona-Server-server-56','Percona-Server-devel-56','Percona-Server-shared-56']
+
+when "debian"
+#client setting
+override['mysql']['client']['packages'] =[ 'Percona-Server-client-5.6','libmysqlclient-dev']
+
+#server settings
+override['mysql']['server']['packages'] =['Percona-Server-server-5.6']
+end
 override['mysql']['server']['service_name'] = 'mysql'
 override['mysql']['version'] = '5.6'
+
+override['mysql']['remove_test_database'] = "true" # remove test DB
 
 # percona repository
 #default['mysql']['percona']['apt_key_id'] = 'CD2EFD2A'
@@ -17,7 +29,7 @@ override['mysql']['version'] = '5.6'
 
 default["percona"]["use_percona_repos"] = true
 default["percona"]["apt_uri"] = "http://repo.percona.com/apt"
-default["percona"]["apt_keyserver"] = "hkp://keys.gnupg.net:80"
+default["percona"]["apt_keyserver"] = "keys.gnupg.net"
 default["percona"]["apt_key"] = "1C4CBDCDCD2EFD2A"
 #
 arch = node["kernel"]["machine"] == "x86_64" ? "x86_64" : "i386"
