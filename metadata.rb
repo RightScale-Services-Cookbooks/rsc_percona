@@ -164,7 +164,7 @@ attribute 'rs-mysql/backup/lineage',
   :description => 'The prefix that will be used to name/locate the backup of the MySQL database server.',
   :required => 'required',
  # :recipes => ['rs-mysql::default', 'rs-mysql::master', 'rs-mysql::slave', 'rs-mysql::backup']
- :recipes => ['rsc_percona::efault', 'rsc_percona::master', 'rsc_percona::slave']
+ :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave']
 
 attribute 'rs-mysql/restore/lineage',
   :display_name => 'Restore Lineage',
