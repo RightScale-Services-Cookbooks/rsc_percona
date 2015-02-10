@@ -104,55 +104,55 @@ attribute 'rs-mysql/device/count',
   :description => 'The number of devices to create and use in the Logical Volume. If this value is set to more than' +
     ' 1, it will create the specified number of devices and create an LVM on the devices.',
   :default => '2',
-  :recipes => ['rs-mysql::stripe', 'rs-mysql::decommission'],
+  :recipes => ['rsc_percona::stripe', 'rs-mysql::decommission'],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/mount_point',
   :display_name => 'Device Mount Point',
   :description => 'The mount point to mount the device on. Example: /mnt/storage',
   :default => '/mnt/storage',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe', 'rs-mysql::decommission'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe', 'rs-mysql::decommission'],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/nickname',
   :display_name => 'Device Nickname',
   :description => 'Nickname for the device. Example: data_storage',
   :default => 'data_storage',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe', 'rs-mysql::decommission'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe', 'rs-mysql::decommission'],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/volume_size',
   :display_name => 'Device Volume Size',
   :description => 'Size of the volume or logical volume to create (in GB). Example: 10',
   :default => '10',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/iops',
   :display_name => 'Device IOPS',
   :description => 'IO Operations Per Second to use for the device. Currently this value is only used on AWS clouds.' +
     ' Example: 100',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'optional'
 
 attribute 'rs-mysql/device/volume_type',
   :display_name => 'Volume Type',
   :description => 'Volume Type to use for creating volumes. Example: gp2',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'optional'
 
 attribute 'rs-mysql/device/filesystem',
   :display_name => 'Device Filesystem',
   :description => 'The filesystem to be used on the device. Example: ext4',
   :default => 'ext4',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'optional'
 
 attribute 'rs-mysql/device/detach_timeout',
   :display_name => 'Detach Timeout',
   :description => 'Amount of time (in seconds) to wait for a single volume to detach at decommission. Example: 300',
   :default => '300',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'optional'
 
 attribute 'rs-mysql/device/destroy_on_decommission',
@@ -171,12 +171,12 @@ attribute 'rs-mysql/backup/lineage',
 attribute 'rs-mysql/restore/lineage',
   :display_name => 'Restore Lineage',
   :description => 'The lineage name to restore backups. Example: staging',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'recommended'
 
 attribute 'rs-mysql/restore/timestamp',
   :display_name => 'Restore Timestamp',
   :description => 'The timestamp (in seconds since UNIX epoch) to select a backup to restore from.' +
     ' The backup selected will have been created on or before this timestamp. Example: 1391473172',
-  :recipes => ['rs-mysql::volume', 'rs-mysql::stripe'],
+  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'recommended'
