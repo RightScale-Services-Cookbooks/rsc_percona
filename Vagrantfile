@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
     master.vm.hostname = 'rsc-percona'
 
     master.vm.provision :chef_solo do |chef|
-      chef.log_level='info'
+      chef.log_level='debug'
       chef.json = {
         :cloud => {
           :provider => 'vagrant',
@@ -103,7 +103,7 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[apt::default]",
         #"recipe[yum::epel]",
-        "recipe[rsc_percona::master]",
+        "recipe[rsc_percona::default]",
         "recipe[fake::database_mysql]",
       ]
     end

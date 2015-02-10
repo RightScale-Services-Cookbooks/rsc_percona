@@ -1,14 +1,21 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-
-#client setting
-#node.override['mysql']['client']['packages'] =[ 'Percona-Server-client-56','Percona-Server-devel-56']
 #
-##server settings
-#node.override['mysql']['server']['packages'] =['Percona-Server-server-56','Percona-Server-devel-56','Percona-Server-shared-56']
-#node.override['mysql']['server']['service_name'] = 'mysql'
-#node.override['mysql']['version'] = '5.6'
+# Cookbook Name:: rsc_percona
+# Recipe:: default
+#
+# Copyright (C) 2014 RightScale, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
 return unless node["percona"]["use_percona_repos"]
 
@@ -39,7 +46,6 @@ when "debian"
     action :nothing
   end
   e.run_action(:run)
-  #resources('apt_repository[percona]').run_action(:add)
 when "rhel"
   include_recipe "yum"
 
@@ -62,55 +68,10 @@ when "rhel"
     sslverify node["percona"]["yum"]["sslverify"]
     notifies :run, "execute[create-yum-cache]", :immediately
     notifies :create, "ruby_block[reload-internal-yum-cache]", :immediately
-    #notifies :install, "package[Percona-Server-client-56]", :immediately
     action :nothing
   end
   y.run_action(:create)
-  #resources('yum_repository[percona]').run_action(:add)
 end
 
-#packages = node['mysql']['server']['packages'].concat(node['mysql']['client']['packages'])
-#packages.each do |p|
-#  package(p).run_action(:nothing)
-#end
-#node['mysql']['client']['packages'].each do |name|
-#  resources("package[#{name}]").run_action(:install)
-#end
 
-#chef_gem 'mysql' do
-
-
-#packages = node['mysql']['server']['packages'].concat(node['mysql']['client']['packages'])
-#
-#packages.each do |p|
-#  package(p).run_action(:install)
-#end
-#
-
-
-#if  node["platform_family"] == 'debian'
-#  chef_gem "chef-rewind"
-#  require 'chef/rewind'
-#  include_recipe "mysql::_server_debian" 
-#  #
-#  rewind "template[/etc/mysql/my.cnf]"
-#
-#  template '/etc/mysql/my.cnf' do
-#    source 'my.cnf.erb'
-#    owner 'root'
-#    group 'root'
-#    mode '0644'
-#    #notifies :install, 'package[mysql-server]', :immediately
-#    notifies :run, 'execute[/usr/bin/mysql_install_db]', :immediately
-#    notifies :run, 'bash[move mysql data to datadir]', :immediately
-#    notifies :restart, 'service[mysql]', :immediately
-#  end
-#  
-#  
-#end 
-#
-#chef_gem "mysql" do
-#  action :nothing
-#end
-##c.run_action(:install)
-#resources("chef_gem[mysql]").run_action(:install)
+include_recipe "rs-mysql::default"
