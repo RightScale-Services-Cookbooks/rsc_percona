@@ -18,4 +18,4 @@
 #
 
 include_recipe "rsc_percona::default"
-include_recipe "rs-mysql::slave"
+include_recipe "rs-mysql::stripe"
