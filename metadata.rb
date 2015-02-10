@@ -20,8 +20,8 @@ recipe 'rsc_percona::stripe', 'Creates volumes, attaches them to the server, set
 attribute 'rs-mysql/server_usage',
   :display_name => 'Server Usage',
   :description => "The Server Usage method. It is either 'dedicated' or 'shared'. In a 'dedicated' server all" +
-    " server resources are dedicated to MySQL. In a 'shared' server, MySQL utilizes only half of the resources." +
-    " Example: 'dedicated'",
+  " server resources are dedicated to MySQL. In a 'shared' server, MySQL utilizes only half of the resources." +
+  " Example: 'dedicated'",
   :default => 'dedicated',
   :required => 'optional',
   :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave']
@@ -29,7 +29,7 @@ attribute 'rs-mysql/server_usage',
 attribute 'rs-mysql/bind_network_interface',
   :display_name => 'MySQL Bind Network Interface',
   :description => "The network interface to use for MySQL bind. It can be either" +
-    " 'private' or 'public' interface.",
+  " 'private' or 'public' interface.",
   :default => 'private',
   :choice => ['public', 'private'],
   :required => 'optional',
@@ -56,7 +56,7 @@ attribute 'rs-mysql/application_password',
 attribute 'rs-mysql/application_user_privileges',
   :display_name => 'MySQL Application User Privileges',
   :description => 'The privileges given to the application user. This can be an array of mysql privilege types.' +
-    ' Example: select, update, insert',
+  ' Example: select, update, insert',
   :required => 'optional',
   :type => 'array',
   :default => [:select, :update, :insert],
@@ -71,7 +71,7 @@ attribute 'rs-mysql/application_database_name',
 attribute 'rs-mysql/server_repl_password',
   :display_name => 'MySQL Slave Replication Password',
   :description => 'The replication password set on the master database and used by the slave to authenticate and' +
-    ' connect. If not set, rs-mysql/server_root_password will be used. Example cred:MYSQL_REPLICATION_PASSWORD',
+  ' connect. If not set, rs-mysql/server_root_password will be used. Example cred:MYSQL_REPLICATION_PASSWORD',
   :required => 'optional',
   :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave']
 
@@ -79,7 +79,8 @@ attribute 'rs-mysql/backup/lineage',
   :display_name => 'Backup Lineage',
   :description => 'The prefix that will be used to name/locate the backup of the MySQL database server.',
   :required => 'required',
-  :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave', 'rs-mysql::backup']
+  # :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave', 'rs-mysql::backup']
+:recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave']
 
 attribute 'rs-mysql/dns/master_fqdn',
   :display_name => 'MySQL Database FQDN',
@@ -102,23 +103,26 @@ attribute 'rs-mysql/dns/secret_key',
 attribute 'rs-mysql/device/count',
   :display_name => 'Device Count',
   :description => 'The number of devices to create and use in the Logical Volume. If this value is set to more than' +
-    ' 1, it will create the specified number of devices and create an LVM on the devices.',
+  ' 1, it will create the specified number of devices and create an LVM on the devices.',
   :default => '2',
-  :recipes => ['rsc_percona::stripe', 'rs-mysql::decommission'],
+  #:recipes => ['rsc_percona::stripe', 'rs-mysql::decommission'],
+:recipes => ['rsc_percona::stripe'],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/mount_point',
   :display_name => 'Device Mount Point',
   :description => 'The mount point to mount the device on. Example: /mnt/storage',
   :default => '/mnt/storage',
-  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe', 'rs-mysql::decommission'],
+ # :recipes => ['rsc_percona::volume', 'rsc_percona::stripe', 'rs-mysql::decommission'],
+:recipes => ['rsc_percona::volume', 'rsc_percona::stripe',],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/nickname',
   :display_name => 'Device Nickname',
   :description => 'Nickname for the device. Example: data_storage',
   :default => 'data_storage',
-  :recipes => ['rsc_percona::volume', 'rsc_percona::stripe', 'rs-mysql::decommission'],
+ :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
+ # :recipes => ['rsc_percona::volume', 'rsc_percona::stripe', 'rs-mysql::decommission'],
   :required => 'recommended'
 
 attribute 'rs-mysql/device/volume_size',
@@ -131,7 +135,7 @@ attribute 'rs-mysql/device/volume_size',
 attribute 'rs-mysql/device/iops',
   :display_name => 'Device IOPS',
   :description => 'IO Operations Per Second to use for the device. Currently this value is only used on AWS clouds.' +
-    ' Example: 100',
+  ' Example: 100',
   :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'optional'
 
@@ -155,18 +159,12 @@ attribute 'rs-mysql/device/detach_timeout',
   :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'optional'
 
-attribute 'rs-mysql/device/destroy_on_decommission',
-  :display_name => 'Destroy on Decommission',
-  :description => 'If set to true, the devices will be destroyed on decommission.',
-  :default => 'false',
-  :recipes => ['rs-mysql::decommission'],
-  :required => 'recommended'
-
 attribute 'rs-mysql/backup/lineage',
   :display_name => 'Backup Lineage',
   :description => 'The prefix that will be used to name/locate the backup of the MySQL database server.',
   :required => 'required',
-  :recipes => ['rs-mysql::default', 'rs-mysql::master', 'rs-mysql::slave', 'rs-mysql::backup']
+ # :recipes => ['rs-mysql::default', 'rs-mysql::master', 'rs-mysql::slave', 'rs-mysql::backup']
+ :recipes => ['rsc_percona::efault', 'rsc_percona::master', 'rsc_percona::slave']
 
 attribute 'rs-mysql/restore/lineage',
   :display_name => 'Restore Lineage',
@@ -177,6 +175,6 @@ attribute 'rs-mysql/restore/lineage',
 attribute 'rs-mysql/restore/timestamp',
   :display_name => 'Restore Timestamp',
   :description => 'The timestamp (in seconds since UNIX epoch) to select a backup to restore from.' +
-    ' The backup selected will have been created on or before this timestamp. Example: 1391473172',
+  ' The backup selected will have been created on or before this timestamp. Example: 1391473172',
   :recipes => ['rsc_percona::volume', 'rsc_percona::stripe'],
   :required => 'recommended'
