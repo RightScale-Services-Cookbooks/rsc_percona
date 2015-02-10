@@ -103,8 +103,7 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[apt::default]",
         #"recipe[yum::epel]",
-        "recipe[rsc_percona::default]",
-        "recipe[rs-mysql::master]",
+        "recipe[rsc_percona::master]",
         "recipe[fake::database_mysql]",
       ]
     end
@@ -138,8 +137,7 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[apt::default]",
         #"recipe[yum::epel]",
-        "recipe[rsc_percona::default]",
-        "recipe[rs-mysql::slave]",
+        "recipe[rsc_percona::slave]",
         #"recipe[rs-mysql::master]",
       ]
 
