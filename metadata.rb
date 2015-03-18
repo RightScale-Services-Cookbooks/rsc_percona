@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@rightscale.com'
 license          'Apache 2.0'
 description      'Installs and configures a Percona server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.0.4'
+version          '1.0.5'
 
 depends 'rs-mysql', '1.1.6'
 
@@ -39,7 +39,7 @@ attribute 'rs-mysql/server_root_password',
   :display_name => 'MySQL Root Password',
   :description => 'The root password for MySQL server. Example: cred:MYSQL_ROOT_PASSWORD',
   :required => 'required',
-  :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave']
+  :recipes => ['rsc_percona::default', 'rsc_percona::master', 'rsc_percona::slave','rsc_percona::toolkit']
 
 attribute 'rs-mysql/application_username',
   :display_name => 'MySQL Application Username',
