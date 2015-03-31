@@ -16,6 +16,7 @@ recipe 'rsc_percona::toolkit', 'Installs the Percona toolkit package'
 recipe 'rsc_percona::volume', 'Creates a volume, attaches it to the server, and moves the Percona data to the volume'
 recipe 'rsc_percona::stripe', 'Creates volumes, attaches them to the server, sets up a striped LVM, and moves the Percona' +
   ' data to the volume'
+recipe 'rsc_percona::collectd', 'Setup collectd for percona'
 
 attribute 'rs-mysql/server_usage',
   :display_name => 'Server Usage',
