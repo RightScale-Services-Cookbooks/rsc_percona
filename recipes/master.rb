@@ -17,5 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe "rsc_percona::default"
 include_recipe "rs-mysql::master"

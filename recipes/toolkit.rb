@@ -4,7 +4,6 @@
 
 
 
-include_recipe 'rsc_percona::default'
 
 bash '' do
   code <<-EOH
