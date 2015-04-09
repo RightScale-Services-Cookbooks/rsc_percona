@@ -18,3 +18,8 @@
 #
 
 include_recipe "rs-mysql::volume"
+
+#remove auto.conf if exists in backup. causes isssues with same UUIDs
+file "#{node['rs-mysql']['device']['mount_point']}/auto.conf" do
+  action :delete
+end
