@@ -20,7 +20,7 @@
 include_recipe "rs-mysql::volume"
 
 #remove auto.conf if exists in backup. causes isssues with same UUIDs
-file "#{node['rs-mysql']['device']['mount_point']}/mysql/auto.conf" do
+file "#{node['rs-mysql']['device']['mount_point']}/mysql/auto.cnf" do
   action :delete
-  only_if do ::File.exists?("#{node['rs-mysql']['device']['mount_point']}/mysql/auto.conf") end
+  only_if do ::File.exists?("#{node['rs-mysql']['device']['mount_point']}/mysql/auto.cnf") end
 end
