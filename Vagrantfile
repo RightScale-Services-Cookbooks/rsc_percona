@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
     master.vm.hostname = 'rsc-percona'
 
     master.vm.provision :chef_solo do |chef|
-      chef.log_level='debug'
+      chef.log_level='info'
       chef.json = {
         :cloud => {
           :provider => 'vagrant',
@@ -106,6 +106,7 @@ Vagrant.configure("2") do |config|
         "recipe[rsc_percona::default]",
         "recipe[fake::database_mysql]",
       ]
+       chef.arguments = "--logfile /var/log/chef-solo.log --log_level debug"
     end
   end
   config.vm.define :slave_1 do |slave|
@@ -138,10 +139,9 @@ Vagrant.configure("2") do |config|
         "recipe[apt::default]",
         #"recipe[yum::epel]",
         "recipe[rsc_percona::slave]",
-        #"recipe[rs-mysql::master]",
       ]
 
-      #chef.arguments = "--logfile /var/log/chef-solo.log --log_level debug"
+      chef.arguments = "--logfile /var/log/chef-solo.log --log_level debug"
     end
   end
 
@@ -180,7 +180,7 @@ Vagrant.configure("2") do |config|
         "recipe[rs-mysql::slave]"
       ]
 
-      # chef.arguments = "--logfile /var/log/chef-solo.log --log_level debug"
+       chef.arguments = "--logfile /var/log/chef-solo.log --log_level debug"
     end
   end
 end
