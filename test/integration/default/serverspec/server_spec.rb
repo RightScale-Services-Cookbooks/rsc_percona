@@ -8,12 +8,12 @@ case os[:family]
 when 'ubuntu'
   mysql_name = 'mysql'
   mysql_config_file = '/etc/mysql/my.cnf'
-  mysql_server_packages = %w{mysql-server apparmor-utils}
+  mysql_server_packages = %w{percona-server-server-5.6 libmysqlclient-dev apparmor}
   collectd_plugin_dir = '/etc/collectd/plugins'
 when 'redhat'
-  mysql_name = 'mysqld'
+  mysql_name = 'mysql'
   mysql_config_file = '/etc/my.cnf'
-  mysql_server_packages = %w{mysql-server}
+  mysql_server_packages = %w{Percona-Server-server-56 Percona-Server-devel-56 Percona-Server-shared-56}
   collectd_plugin_dir = '/etc/collectd.d'
 end
 
@@ -56,7 +56,7 @@ describe "verify the tuning attributes set in #{mysql_config_file}" do
     max_allowed_packet: "20M",
     innodb_log_file_size: "4M",
     innodb_log_buffer_size: "16M",
-    table_cache: 256,
+    table_open_cache: 256,
     sort_buffer_size: "2M",
     innodb_additional_mem_pool_size: "50M",
     myisam_sort_buffer_size: "64M"
@@ -99,7 +99,7 @@ describe "can run MySQL queries on the server" do
 
   describe "create database" do
     describe command(
-      "echo \"DROP DATABASE IF EXISTS blah; CREATE DATABASE blah; SHOW DATABASES LIKE 'blah'\" | mysql --user=root --password=rootpass"
+      "echo \"DROP DATABASE IF EXISTS blah; CREATE DATABASE blah; SHOW DATABASES LIKE 'blah'\" | MYSQL_PWD=rootpass mysql --user=root"
     ) do
       its(:stdout) { should match /blah/ }
     end
@@ -143,8 +143,8 @@ describe "Default database tags" do
     expect(default_tags['server:uuid'].first.value).to eq('1111111')
   end
 
-  it "should have a public of 10.10.1.1" do
-    expect(default_tags['server:public_ip_0'].first.value).to eq('10.10.1.1')
+  it "should have a public of 100.64.1.1" do
+    expect(default_tags['server:public_ip_0'].first.value).to eq('100.64.1.1')
   end
 
   it "should have a bind port of 3306" do
