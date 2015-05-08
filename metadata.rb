@@ -7,6 +7,8 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.0.6'
 
 depends 'rs-mysql', '1.1.6'
+depends 'apt'
+depends 'yum'
 
 recipe 'rsc_percona::default', 'Install Percona Server'
 recipe 'rsc_percona::master', 'Install Percona Server Master Server'
