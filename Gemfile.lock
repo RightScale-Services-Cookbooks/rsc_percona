@@ -54,6 +54,7 @@ GEM
       plist (~> 3.1.0)
       pry (~> 0.9)
       rest-client (>= 1.0.4, <= 1.6.7)
+    chef-rewind (0.0.9)
     chef-zero (2.2.1)
       ffi-yajl (~> 1.1)
       hashie (~> 2.0)
@@ -238,6 +239,7 @@ PLATFORMS
 
 DEPENDENCIES
   berkshelf
+  chef-rewind
   chefspec (~> 3.4.0)
   kitchen-vagrant
   mysql
