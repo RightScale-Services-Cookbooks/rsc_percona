@@ -9,7 +9,9 @@
       "ref": "ec50609ed6eb193e0411f30aced91befa571940f"
     },
     "mysql": {
-      "path": "../../cdwilhelm/mysql"
+      "locked_version": "4.0.22",
+      "git": "git://github.com/cdwilhelm/mysql.git",
+      "ref": "75ede8839843fdca31fa0dea9369302097d38e54"
     },
     "dns": {
       "locked_version": "0.1.3",
@@ -25,7 +27,9 @@
       "ref": "e7b23e77a3987afdf5d1fefc84edd023ec2497f3"
     },
     "rs-mysql": {
-      "path": "../../rightscale-cookbooks/rs-mysql"
+      "locked_version": "1.1.6",
+      "git": "git://github.com/rightscale-cookbooks/rs-mysql.git",
+      "ref": "91d34d46d4e42884e669f954cc0dc07842de9193"
     },
     "apt": {
       "locked_version": "2.3.10"
@@ -49,16 +53,16 @@
       "locked_version": "0.1.4"
     },
     "xml": {
-      "locked_version": "1.2.9"
+      "locked_version": "1.2.13"
     },
     "chef-sugar": {
-      "locked_version": "2.4.1"
+      "locked_version": "3.1.0"
     },
     "postgresql": {
-      "locked_version": "3.4.14"
+      "locked_version": "3.4.16"
     },
     "aws": {
-      "locked_version": "2.5.0"
+      "locked_version": "2.7.0"
     },
     "xfs": {
       "locked_version": "1.1.0"
@@ -70,10 +74,10 @@
       "locked_version": "1.0.1"
     },
     "rightscale_tag": {
-      "locked_version": "1.0.5"
+      "locked_version": "1.0.6"
     },
     "machine_tag": {
-      "locked_version": "1.0.8"
+      "locked_version": "1.0.9"
     },
     "filesystem": {
       "locked_version": "0.9.0"
@@ -82,10 +86,10 @@
       "locked_version": "1.1.2"
     },
     "rightscale_volume": {
-      "locked_version": "1.2.5"
+      "locked_version": "1.2.8"
     },
     "rightscale_backup": {
-      "locked_version": "1.1.6"
+      "locked_version": "1.1.8"
     },
     "git": {
       "locked_version": "4.0.2"
@@ -94,13 +98,16 @@
       "locked_version": "2.2.2"
     },
     "windows": {
-      "locked_version": "1.36.1"
+      "locked_version": "1.36.6"
     },
     "runit": {
-      "locked_version": "1.5.12"
+      "locked_version": "1.6.0"
+    },
+    "packagecloud": {
+      "locked_version": "0.0.17"
     },
     "yum": {
-      "locked_version": "3.5.1"
+      "locked_version": "3.6.0"
     }
   }
 }
