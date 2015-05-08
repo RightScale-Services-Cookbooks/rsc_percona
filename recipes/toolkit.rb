@@ -5,7 +5,7 @@
 
 
 
-bash '' do
+bash 'create functions' do
   code <<-EOH
 mysql -u root -p#{node['mysql']['server_root_password']} -e "CREATE FUNCTION fnv1a_64 RETURNS INTEGER SONAME 'libfnv1a_udf.so'"
 mysql -u root -p#{node['mysql']['server_root_password']} -e "CREATE FUNCTION fnv_64 RETURNS INTEGER SONAME 'libfnv_udf.so'"
