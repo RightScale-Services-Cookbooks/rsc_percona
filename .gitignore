@@ -2,3 +2,4 @@
 /cache_dir/
 .kitchen/
 .vagrant/
+Berksfile.lock
