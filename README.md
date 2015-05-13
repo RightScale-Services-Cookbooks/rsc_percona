@@ -1,5 +1,9 @@
 # rsc_percona cookbook
+[![Release](https://img.shields.io/github/release/rightscale-services-cookbooks/rsc_percona.svg?style=flat)][release]
+[![Build Status](https://img.shields.io/travis/rightscale-services-cookbooks/rsc_percona.svg?style=flat)][travis]
 
+[release]: https://github.com/rightscale-services-cookbooks/rsc_percona/releases/latest
+[travis]: https://travis-ci.org/rightscale-services-cookbooks/rsc_percona
 Provides recipes for installing a Percona server with RightScale, including:
 
 * installs XTRABackup, 
